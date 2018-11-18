@@ -10,7 +10,10 @@
       <li v-for="review in reviews">reviewer: {{ review.reviewer }} rating: {{ review.rating }} text: {{ review.text }}</li>
     </ol>
 
-    someone message:<input type="text" v-model="reviews[2].text">
+    <!-- someone message:<input type="text" v-model="reviews[2].text"> -->
+    <p>rating:<input type="text" v-model="newReview.rating"></p>
+    <p>reviewer:<input type="text" v-model="newReview.reviewer"></p>
+    <p>text:<input type="text" v-model="newReview.text"></p>
     <p><button v-on:click="addReview()">click here to add a review to the screen</button></p>
   </div>
 </template>
@@ -30,15 +33,15 @@ export default {
         {rating: 5, reviewer: "billybob", text: "that sure was some good pancakes"},
         {rating: 3, reviewer: "betsy-sue", text: "darn tootin coffee"},
         {rating: 5, reviewer: "sherman", text: "what excellent tea, especially green tea"}
-      ]
+      ],
+      newReview: {rating: "", reviewer: "", text: ""}
     };
   },
   created: function() {},
   methods: {
     addReview: function() {
       console.log('adding the review...');
-      var newReview = {rating: 1, reviewer: "jethro", text: "darn tootin"};
-      this.reviews.push(newReview);
+      this.reviews.push(this.newReview);
     }
   },
   computed: {}

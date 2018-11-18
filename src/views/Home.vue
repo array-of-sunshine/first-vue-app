@@ -6,10 +6,12 @@
     <p>{{ name }}</p>
     <!-- <p>reviewer: {{ reviews[0].reviewer }} rating: {{ reviews[0].rating }} text: {{ reviews[0].text }}</p> -->
     <!-- <h3 v-for="review in reviews">{{ review }}</h3> -->
-    <ul>
+    <ol>
       <li v-for="review in reviews">reviewer: {{ review.reviewer }} rating: {{ review.rating }} text: {{ review.text }}</li>
-    </ul>
-    someone message:<input type="text" v-model="message">
+    </ol>
+
+    someone message:<input type="text" v-model="reviews[2].text">
+    <p><button v-on:click="addReview()">click here to add a review to the screen</button></p>
   </div>
 </template>
 
@@ -17,6 +19,7 @@
 </style>
 
 <script>
+
 export default {
   data: function() {
     return {
@@ -31,7 +34,17 @@ export default {
     };
   },
   created: function() {},
-  methods: {},
+  methods: {
+    addReview: function() {
+      console.log('adding the review...');
+      var newReview = {rating: 1, reviewer: "jethro", text: "darn tootin"};
+      this.reviews.push(newReview);
+    }
+  },
   computed: {}
 };
+// user clicks a button
+// runs a function
+// function takes some data
+// puts the data in the array
 </script>

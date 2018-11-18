@@ -7,7 +7,7 @@
     <!-- <p>reviewer: {{ reviews[0].reviewer }} rating: {{ reviews[0].rating }} text: {{ reviews[0].text }}</p> -->
     <!-- <h3 v-for="review in reviews">{{ review }}</h3> -->
     <ol>
-      <li v-for="review in reviews" v-on:click="removeReview(review)">reviewer: {{ review.reviewer }} rating: {{ review.rating }} text: {{ review.text }}</li>
+      <li v-for="review in reviews" v-on:click="removeReview(review)" v-if="isPositive(review)">reviewer: {{ review.reviewer }} rating: {{ review.rating }} text: {{ review.text }}</li>
     </ol>
 
     <!-- someone message:<input type="text" v-model="reviews[2].text"> -->
@@ -54,6 +54,19 @@ export default {
       var index = this.reviews.indexOf(inputReview);
       // splice something something
       this.reviews.splice(index, 1);
+    },
+    isPositive: function(inputReview) {
+      console.log('checking to see if the review is positive');
+      // how can i tell if a review is positive?
+      // check and see if the review's text has the string 'bad' in it
+      return !inputReview.text.includes('bad');
+      // if (inputReview.text.includes('bad')) {
+      //   // don't show it
+      //   return false;
+      // } else {
+      //   // do show it
+      //   return true;
+      // }
     }
   },
   computed: {}

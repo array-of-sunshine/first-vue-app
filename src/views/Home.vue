@@ -7,7 +7,7 @@
     <!-- <p>reviewer: {{ reviews[0].reviewer }} rating: {{ reviews[0].rating }} text: {{ reviews[0].text }}</p> -->
     <!-- <h3 v-for="review in reviews">{{ review }}</h3> -->
     <ol>
-      <li v-for="review in reviews">reviewer: {{ review.reviewer }} rating: {{ review.rating }} text: {{ review.text }}</li>
+      <li v-for="review in reviews" v-on:click="removeReview(review)">reviewer: {{ review.reviewer }} rating: {{ review.rating }} text: {{ review.text }}</li>
     </ol>
 
     <!-- someone message:<input type="text" v-model="reviews[2].text"> -->
@@ -41,7 +41,19 @@ export default {
   methods: {
     addReview: function() {
       console.log('adding the review...');
-      this.reviews.push(this.newReview);
+      if (this.newReview.text) {
+        this.reviews.push(this.newReview);
+        // reset newReview to it's original state
+        this.newReview = {rating: "", reviewer: "", text: ""};
+      }
+    },
+    removeReview: function(inputReview) {
+      console.log('removng the the review');
+      console.log(inputReview);
+      // find the index of inputReview
+      var index = this.reviews.indexOf(inputReview);
+      // splice something something
+      this.reviews.splice(index, 1);
     }
   },
   computed: {}
@@ -50,4 +62,10 @@ export default {
 // runs a function
 // function takes some data
 // puts the data in the array
+
+
+// to complete task
+// click on a particular task which runs a function
+// somehow figure out which task the user clicked on
+// remove that element from the array
 </script>
